@@ -1,15 +1,17 @@
+// 한글 폰트를 사용하기 위해 Noto Sans KR을 불러옵니다.
+import { Noto_Sans_KR } from "next/font/google";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import "@/styles/globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Noto Sans KR 폰트를 설정 합니다.
+const noto_sans_kr = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
+  weight: ["400", "700"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,8 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      {/* 요소들에 한글 폰트 제공 */}
+      <body className={`${noto_sans_kr.variable} bg-white text-black`}>
+        <Header />
         {children}
+        <Footer /> {/* Footer */}
       </body>
     </html>
   );
