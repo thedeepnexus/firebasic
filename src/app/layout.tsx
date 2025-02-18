@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { AuthProvider } from "@/context/auth";
 
 // Noto Sans KR 폰트를 설정 합니다.
 const noto_sans_kr = Noto_Sans_KR({
@@ -28,9 +29,11 @@ export default function RootLayout({
     <html lang="en">
       {/* 요소들에 한글 폰트 제공 */}
       <body className={`${noto_sans_kr.variable} bg-white text-black`}>
-        <Header />
-        {children}
-        <Footer /> {/* Footer */}
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
